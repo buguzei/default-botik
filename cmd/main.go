@@ -5,13 +5,11 @@ import (
 	"github.com/joho/godotenv"
 	"log"
 	"os"
-	"strconv"
-	"taxi-bot/config"
 	"taxi-bot/internal/bot"
 )
 
 func main() {
-	err := godotenv.Load("../config/.env")
+	err := godotenv.Load("config/.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -24,8 +22,6 @@ func main() {
 	}
 
 	log.Printf("Authorized on account %s", Bot.Self.UserName)
-
-	config.AdminID, _ = strconv.ParseInt(os.Getenv("ADMIN_TG_ID"), 0, 64)
 
 	bot.StartBot(Bot)
 }
